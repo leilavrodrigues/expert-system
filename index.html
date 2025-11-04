@@ -4,220 +4,188 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel de Supervisão Operacional</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
-      background: linear-gradient(135deg, #0a0f1f, #1b2735);
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #0a0a0f, #000);
       color: #e0e0e0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
     }
 
     header {
       text-align: center;
-      padding: 30px 20px;
-      border-bottom: 1px solid #00c6ff33;
+      padding: 20px;
+      background: linear-gradient(90deg, #111, #222);
+      box-shadow: 0 0 20px #0ff3;
+      letter-spacing: 1px;
     }
 
-    header h1 {
-      font-size: 2em;
-      color: #00c6ff;
-      margin-bottom: 10px;
+    h1 {
+      font-size: 1.8em;
+      color: #00e0ff;
+      text-shadow: 0 0 10px #00e0ff;
     }
 
-    header p {
-      color: #8fb9ff;
-      font-size: 1em;
-    }
-
-    .cards {
+    .dashboard {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
       padding: 30px;
     }
 
     .card {
-      background: #121826;
-      border: 1px solid #00c6ff33;
+      background: #111;
       border-radius: 15px;
-      text-align: center;
       padding: 20px;
-      box-shadow: 0 0 15px #00c6ff22;
+      box-shadow: 0 0 20px #0ff3;
+      text-align: center;
       transition: transform 0.3s ease;
     }
 
     .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00c6ff55;
+      transform: scale(1.03);
+      box-shadow: 0 0 25px #00e0ff77;
     }
 
-    .card h2 {
-      color: #00c6ff;
-      font-size: 2em;
-      margin: 0;
-    }
-
-    .card p {
-      color: #a0a0a0;
-      margin-top: 5px;
-      font-size: 0.9em;
-    }
-
-    .charts {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      padding: 30px;
-    }
-
-    .chart-container {
-      background: #121826;
-      border-radius: 15px;
-      border: 1px solid #00c6ff33;
-      padding: 20px;
-      box-shadow: 0 0 15px #00c6ff22;
+    .value {
+      font-size: 2.5em;
+      color: #00e0ff;
+      text-shadow: 0 0 10px #00e0ff;
+      margin: 10px 0;
     }
 
     canvas {
-      width: 100% !important;
-      height: 300px !important;
+      margin-top: 15px;
     }
 
     footer {
       text-align: center;
       padding: 20px;
-      color: #777;
-      font-size: 0.8em;
-      border-top: 1px solid #00c6ff33;
+      font-size: 0.9em;
+      color: #aaa;
+      border-top: 1px solid #222;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Painel de Supervisão Operacional</h1>
-    <p>Atualizado automaticamente - Dados simulados de desempenho e monitoramento</p>
+    <p>Monitoramento em tempo real – Setor de Tecnologia</p>
   </header>
 
-  <section class="cards">
+  <div class="dashboard">
     <div class="card">
-      <h2 id="clientes">0</h2>
-      <p>Clientes Monitorados</p>
+      <h3>Empresas de TI no Brasil</h3>
+      <div class="value" id="empresas">0</div>
+      <p>em constante crescimento</p>
     </div>
-    <div class="card">
-      <h2 id="eventos">0</h2>
-      <p>Eventos Hoje</p>
-    </div>
-    <div class="card">
-      <h2 id="resolucao">0%</h2>
-      <p>Taxa de Resolução</p>
-    </div>
-    <div class="card">
-      <h2 id="tempo">0min</h2>
-      <p>Tempo Médio de Atendimento</p>
-    </div>
-  </section>
 
-  <section class="charts">
-    <div class="chart-container">
-      <h3 style="text-align:center; color:#8fb9ff;">Atendimentos por Dia</h3>
-      <canvas id="linhaChart"></canvas>
+    <div class="card">
+      <h3>Profissionais em falta</h3>
+      <div class="value" id="faltantes">0</div>
+      <p>demanda crescente por mão de obra</p>
     </div>
-    <div class="chart-container">
-      <h3 style="text-align:center; color:#8fb9ff;">Câmeras Online/Offline por Cliente</h3>
-      <canvas id="barraChart"></canvas>
+
+    <div class="card">
+      <h3>Previsão de vagas até 2030</h3>
+      <div class="value" id="vagas">0</div>
+      <p>estimativa global do setor</p>
     </div>
-    <div class="chart-container">
-      <h3 style="text-align:center; color:#8fb9ff;">Eventos Resolvidos x Pendentes</h3>
-      <canvas id="roscaChart"></canvas>
-    </div>
-  </section>
+  </div>
+
+  <div style="width: 80%; margin: 0 auto;">
+    <canvas id="grafico"></canvas>
+  </div>
 
   <footer>
-    <p>© 2025 Sistema de Supervisão Operacional | Simulação de Dados</p>
+    Atualizado automaticamente – Painel demonstrativo © 2025
   </footer>
 
   <script>
-    // Função para gerar números aleatórios
-    function random(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+    // Função para animar os números
+    function animateValue(id, start, end, duration) {
+      const obj = document.getElementById(id);
+      if (!obj) return;
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.textContent = Math.floor(progress * (end - start) + start).toLocaleString();
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
     }
 
-    // Atualização dos cartões
-    function atualizarCards() {
-      document.getElementById("clientes").textContent = random(12, 20);
-      document.getElementById("eventos").textContent = random(40, 90);
-      document.getElementById("resolucao").textContent = random(85, 99) + "%";
-      document.getElementById("tempo").textContent = random(3, 15) + "min";
+    // Valores iniciais
+    function atualizarDados() {
+      const empresas = 25000 + Math.floor(Math.random() * 1000);
+      const faltantes = 500000 + Math.floor(Math.random() * 10000);
+      const vagas = 1500000 + Math.floor(Math.random() * 30000);
+
+      animateValue("empresas", 0, empresas, 1500);
+      animateValue("faltantes", 0, faltantes, 1500);
+      animateValue("vagas", 0, vagas, 1500);
+
+      // Atualiza gráfico
+      grafico.data.datasets[0].data.push(empresas);
+      grafico.data.datasets[1].data.push(faltantes);
+      grafico.data.datasets[2].data.push(vagas);
+      grafico.data.labels.push(new Date().toLocaleTimeString());
+      if (grafico.data.labels.length > 10) {
+        grafico.data.labels.shift();
+        grafico.data.datasets.forEach(d => d.data.shift());
+      }
+      grafico.update();
     }
 
-    // Configuração dos gráficos
-    const linhaCtx = document.getElementById("linhaChart").getContext("2d");
-    const barraCtx = document.getElementById("barraChart").getContext("2d");
-    const roscaCtx = document.getElementById("roscaChart").getContext("2d");
-
-    const linhaChart = new Chart(linhaCtx, {
-      type: "line",
+    // Cria o gráfico
+    const ctx = document.getElementById('grafico').getContext('2d');
+    const grafico = new Chart(ctx, {
+      type: 'line',
       data: {
-        labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
-        datasets: [{
-          label: "Atendimentos",
-          data: [45, 60, 50, 80, 70, 65, 90],
-          borderColor: "#00c6ff",
-          backgroundColor: "rgba(0,198,255,0.2)",
-          fill: true,
-          tension: 0.3
-        }]
-      },
-      options: { scales: { y: { beginAtZero: true } } }
-    });
-
-    const barraChart = new Chart(barraCtx, {
-      type: "bar",
-      data: {
-        labels: ["Cliente A", "Cliente B", "Cliente C", "Cliente D"],
+        labels: [],
         datasets: [
           {
-            label: "Câmeras Online",
-            data: [random(10,20), random(10,20), random(10,20), random(10,20)],
-            backgroundColor: "#00c6ff"
+            label: 'Empresas de TI',
+            borderColor: '#00e0ff',
+            data: [],
+            borderWidth: 2,
+            tension: 0.3
           },
           {
-            label: "Câmeras Offline",
-            data: [random(0,5), random(0,5), random(0,5), random(0,5)],
-            backgroundColor: "#ff4b4b"
+            label: 'Profissionais em Falta',
+            borderColor: '#ff4081',
+            data: [],
+            borderWidth: 2,
+            tension: 0.3
+          },
+          {
+            label: 'Vagas até 2030',
+            borderColor: '#00ff88',
+            data: [],
+            borderWidth: 2,
+            tension: 0.3
           }
         ]
       },
-      options: { scales: { y: { beginAtZero: true } } }
-    });
-
-    const roscaChart = new Chart(roscaCtx, {
-      type: "doughnut",
-      data: {
-        labels: ["Resolvidos", "Pendentes"],
-        datasets: [{
-          data: [random(70, 90), random(10, 30)],
-          backgroundColor: ["#00c6ff", "#ff4b4b"]
-        }]
+      options: {
+        plugins: {
+          legend: { labels: { color: '#ccc' } }
+        },
+        scales: {
+          x: { ticks: { color: '#999' } },
+          y: { ticks: { color: '#999' } }
+        }
       }
     });
 
-    // Atualiza dados automaticamente
-    function atualizarGraficos() {
-      linhaChart.data.datasets[0].data = Array.from({length: 7}, () => random(40, 100));
-      barraChart.data.datasets[0].data = Array.from({length: 4}, () => random(10,20));
-      barraChart.data.datasets[1].data = Array.from({length: 4}, () => random(0,5));
-      roscaChart.data.datasets[0].data = [random(70, 90), random(10, 30)];
-      linhaChart.update();
-      barraChart.update();
-      roscaChart.update();
-      atualizarCards();
-    }
-
-    atualizarCards();
-    setInterval(atualizarGraficos, 5000); // Atualiza a cada 5 segundos
+    // Primeira atualização e depois a cada 5 segundos
+    atualizarDados();
+    setInterval(atualizarDados, 5000);
   </script>
 </body>
 </html>
