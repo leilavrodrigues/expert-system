@@ -1,3 +1,14 @@
+<p align="center">
+  <img src="painel.png" alt="Prévia do Sistema Especialista" width="800">
+</p>
+
+# 💻 Sistema Especialista — Painel de Supervisão
+Painel interativo que apresenta dados sobre a **falta de mão de obra em TI**, com visual moderno e tema escuro.
+
+## 📸 Prévia
+*(imagem acima representa o painel em funcionamento)*
+
+
 # 💻 Sistema Especialista — Painel de Supervisão Operacional
 
 Um dashboard moderno e dinâmico desenvolvido por **Leila Rodrigues**, com foco em monitoramento e performance operacional.  
