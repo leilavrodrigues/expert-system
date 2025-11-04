@@ -23,7 +23,7 @@ Este projeto representa um **painel de acompanhamento em tempo real**, mostrando
 ---
 
 ## 🚀 Acesse o projeto
-🔗 https://leilavrodrigues.github.io/sistema-especialista
+🔗 https://leilavrodrigues.github.io/expert-system/
 
 ---
 
